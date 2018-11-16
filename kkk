@@ -1,0 +1,22 @@
+public int updateFlightTime(int Flight_no, String Dep_time, String Arr_time) throws BookingException {
+
+			String sql="update FlightInformation2  Dep_time = ?, Arr_time = ?  where Flight_no = ?";
+
+			int row=0;
+
+
+			try {
+				PreparedStatement ps= connection.prepareStatement(sql);
+				ps.setInt(1,Flight_no );
+				ps.setString(2, Dep_time);
+				ps.setString(3, Arr_time);
+				 row= ps.executeUpdate();
+			}
+			catch (SQLException e) {
+				logger.error(e.getMessage());
+					throw new BookingException(e.getMessage());
+			}
+
+			return row;
+			}
+		
